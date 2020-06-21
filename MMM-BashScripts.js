@@ -1,7 +1,7 @@
 Module.register("MMM-BashScripts", {
 
     defaults: {
-        debug: true,
+        debug: false,
     },
 
     requiresVersion: "2.1.0",
@@ -32,6 +32,9 @@ Module.register("MMM-BashScripts", {
                 if (payload == true) {
                     this.sendSocketNotification("START_MIC")
                 } else this.sendSocketNotification("STOP_MIC")
+                break
+            case "NEW_QUOTE":
+                this.sendNotification("QUOTE-OF-THE-DAY", "getNewQuote")
                 break
             default :
                 break

@@ -17,9 +17,9 @@ module.exports = NodeHelper.create({
         console.log('Starting node_helper for module ' + this.name)
     },
 
-    initialize: function() {
+    initialize: function(debug) {
         console.log("[BashScripts] Initialize...")
-        var debug = (this.conf.debug) ? this.conf.debug : false
+        //var debug = (this.conf.debug) ? this.conf.debug : false
         if (debug == true) log = _log
         log("Thank you for using this module to control mic")
 
@@ -29,9 +29,8 @@ module.exports = NodeHelper.create({
 
     socketNotificationReceived: function (notification, payload) {
         switch(notification) {
-            case "INIT":
-                this.conf.debug = payload
-                this.initialize()
+            case "INIT_BS":
+                this.initialize(payload)
                 break
             case "START_MIC":
                 this.startMic()
